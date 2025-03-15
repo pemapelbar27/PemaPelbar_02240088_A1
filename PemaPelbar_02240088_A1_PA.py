@@ -61,17 +61,15 @@ def palindra(text):
     #compare string with its reverse
     return clean_text == clean_text[::-1]
 #Function 6: word counter
+import requests
+#Function 6: word counter
 def word_counter(file):
-    word_list = ["are", "was", "and"]
-    try:
-        with open(file, "r", encoding = "utf-8") as file:
-            text_content = file.read().lower().split()
-            word_counts = {}
-            for word in word_list:
-                word_counts[word] = text_content.count(word)
-        return word_counts
-    except FileNotFoundError:
-        print("The file not found.")
+    response = requests.get (file)
+    text = response.text.lower()
+    word_list = ["the", "was", "and"]
+
+    word = {word:text. count(word) for word in word_list}
+    return word
     # file_path = input("Enter file_path:")
     # print('Word count results:', word_counter(file_path))
 
@@ -148,9 +146,13 @@ def main():
             #word counter
 
         elif choice == 6:
-            print("Word counter. ")
-            file_path = input("Enter file_path:")
-            print('Word count results:', word_counter(file_path))
+          file = input("Enter the URL of the text file : ").strip()
+          try:
+              result = word_counter(file)
+              print(f"WORD COUNTED : {result}")
+          except requests.exceptions.RequestException as e:
+                print(f"Error fetching the file : {e}")
+       
 
         else:
             print('Error, please enter a number between 0-6')
