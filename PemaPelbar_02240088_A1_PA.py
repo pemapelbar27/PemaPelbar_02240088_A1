@@ -94,7 +94,7 @@ def main():
         print('6 word counter')
         print('*Exit program')
 #get user chice
-        choice = get_valid_num("Enter your choice (0-6):")
+        choice = input("Enter your choice (0-6):")
 #Process user choice
         if choice == 0:
             print("Thank you for using the program")
@@ -102,8 +102,8 @@ def main():
         elif choice == 1:
     #prime num sum
             print("Prime number Sum Calculator")
-            start = get_valid_num("Enter start range:")
-            end = get_valid_num("Enter end range:")
+            start = input("Enter start range:")
+            end = input("Enter end range:")
             result = prime_num_start(start,end)
             print(f"Sum of prime numbers between {start} and {end}: {result}")
         elif choice == 2:
