@@ -35,16 +35,16 @@ while True:
     else:
         #rock paper sicssors game fucntion
         def rock_paper_scissors_game():
-            your_choice = ['rock', 'paper', 'scissor']
+            your_choice_list = ['rock', 'paper', 'scissor']
             #list of valid option
             print('Welcome to Roshambo')
             while True:
                 #get user"s choice
-                your_choice = input("Enter rock, paper or scissor:").lower()
-                comp_choice =random.choice(your_choice)
-                print(f'Comp choice:{comp_choice}')
+                user_choice = input("Enter rock, paper or scissor:").lower()
+                computer_choice =random.choice(your_choice_list)
+                print(f'Computer choice:{computer_choice}')
                 #determine winner
-                if your_choice == comp_choice:
+                if user_choice == computer_choice:
                     print('Its draw')
                 elif (user_choice == 'rock' and comp_choice == 'scissors'):
                     (user_choice == 'paper' and comp_choice == 'rock')
