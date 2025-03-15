@@ -1,42 +1,3 @@
-
-'''def is_prime(n):
-    if n < 2:
-        return False
-    for i in range(2, int(n**0.5)+1):
-        if n % i == 0:
-            return False
-    return True
-
-def main():
-    while True:
-        print('Math and string function')
-        print('1.Prime number sum')
-        print('Length converter')
-        print('3.Consonant counter')
-        print('4.Min-Max number finder')
-        print('5.Palindrome checker')
-        print('6 word counter')
-        print('*Exit program')
-
-        userchoice = input('Enter choice (0-5):')
-        if userchoice == 1:
-            try:
-                start = int(input('Enter start number:'))
-                end = int(input('Enter end number:'))
-                if start > end:
-                    start, end = end, start
-                
-                total = 0
-                for num in range(max(2, start), end + 1):
-                    if is_prime(num):
-                        total += num
-                
-                print(f"Sum of primes from {start} to {end}: {total}")
-            except ValueError:
-                print("Please enter valid integers")
-        elif userchoice == 2:'''
-
-
 # function 1: Prime num sum calculator
 def prime(num):
     #check if a num is prime
@@ -62,15 +23,15 @@ def prime_num_start(start, end):
 
 #Function 2: Length unit converter
 def length_conv(value, direction):
-    # convert btw centimeter and meter
-    if direction.upper() == 'CM':
-        #convert centimeter to meter (1 mter = 10 cm)
-        return round(value * 10, 2)
-    elif direction.upper() == 'M':
-        #convert metr to centimeter(1 centimeter = 0.1 meter)
-        return round(value * 0.1, 2)
+    # convert btw meter and feet
+    if direction.upper() == 'M':
+        #convert meters to feet (1 meter = 3.28084 feet )
+        return round(value * 3.28084, 2)
+    elif direction.upper() == 'F':
+        #convert feet to meters(1 foot = 0.3048 meter)
+        return round(value * 0.3048, 2)
     else:
-        print("Try Again: It must be 'CM' or 'M'")
+        print("Try Again: It must be 'M' or 'F'")
         return None
 #Function 3: Consonant counter
 def consonant_counter(text):
@@ -99,3 +60,102 @@ def palindra(text):
             clean_text += letter
     #compare string with its reverse
     return clean_text == clean_text[::-1]
+#Function 6: word counter
+def word_counter(file):
+    word_list = ["are", "was", "and"]
+    try:
+        with open(file, "r", encoding = "utf-8") as file:
+            text_content = file.read().lower().split()
+            word_counts = {}
+            for word in word_list:
+                word_counts[word] = text_content.count(word)
+        return word_counts
+    except FileNotFoundError:
+        print("The file not found.")
+    # file_path = input("Enter file_path:")
+    # print('Word count results:', word_counter(file_path))
+
+#to get the valid numeric input
+def get_valid_num(prompt, num_type = int):
+    #get valid numeric input from user
+    while True:
+        try:
+            return num_type(input(prompt))
+        except ValueError:
+            print(f"Please enter a valid {num_type.__name__}")
+
+#Main program
+def main():
+    while True:
+        print('Math and string function')
+        print('1.Prime number sum')
+        print('Length converter')
+        print('3.Consonant counter')
+        print('4.Min-Max number finder')
+        print('5.Palindrome checker')
+        print('6 word counter')
+        print('*Exit program')
+#get user chice
+        choice = get_valid_num("Enter your choice (0-6):")
+#Process user choice
+        if choice == 0:
+            print("Thank you for using the program")
+            break
+        elif choice == 1:
+    #prime num sum
+            print("Prime number Sum Calculator")
+            start = get_valid_num("Enter start range")
+            end = get_valid_num("Enter end range")
+            result = prime_num_start(start,end)
+            print(f"Sum of prime numbers between {start} and {end}: {result}")
+        elif choice == 2:
+    #length converter 
+            print("Length unit converter")
+            value = get_valid_num("Enter value to convert:", float)
+            direction = input("Enter direction (CM for meter to centimeter, M for centimeter to meter):")
+            result = length_conv(value, direction)
+            if result is not None:
+                if direction.upper() == 'M':
+                    print(f"{value} centimeter = {result} feet")
+                else:
+                    print(f"{value} meter = {result} centimeter")
+        elif choice == 3:
+            #consonant counter
+            print("Consonant Counter")
+            text = input("Enter a text:")
+            result = consonant_counter(text)
+            print(f"Number of consonants: {result}")
+        elif choice == 4:
+            #Min-Max Finder
+            print("Min-max number Finder")
+            count = get_valid_num("How many numbers to enter")
+            if count <= 0:
+                print("Please enter a positive number")
+                continue
+            numbers = []
+            for i in range(count):
+                num = get_valid_num(f"Enter number {i+1}: ", float)
+                numbers.append(num)
+            min_val, max_val = min_max_finder(numbers)
+            print(f"Smallest: {min_val}, Largest: {max_val}")
+        elif choice == 5:
+            #palindrome checker
+            print('Palindroma checker')
+            text = input("Enter a text: ")
+            result = palindra(text)
+            print(f"Is '{text}' a palindroma? {result}")
+        #elif choice == 6:
+            #word counter
+
+        elif choice == 6:
+            print("Word counter. ")
+            file_path = input("Enter file_path:")
+            print('Word count results:', word_counter(file_path))
+
+        else:
+            print('Error, please enter a number between 0-6')
+        #wait for user before continuing
+        input("Please enter to continue")
+#Run the program
+if __name__ == '__main__':
+    main()
