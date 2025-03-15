@@ -102,21 +102,21 @@ def main():
         elif choice == 1:
     #prime num sum
             print("Prime number Sum Calculator")
-            start = get_valid_num("Enter start range")
-            end = get_valid_num("Enter end range")
+            start = get_valid_num("Enter start range:")
+            end = get_valid_num("Enter end range:")
             result = prime_num_start(start,end)
             print(f"Sum of prime numbers between {start} and {end}: {result}")
         elif choice == 2:
     #length converter 
             print("Length unit converter")
-            value = get_valid_num("Enter value to convert:", float)
-            direction = input("Enter direction (CM for meter to centimeter, M for centimeter to meter):")
+            value = input("Enter value to convert:", float)
+            direction = input("Enter direction (F for meter to feet, M for feet to meter):")
             result = length_conv(value, direction)
             if result is not None:
                 if direction.upper() == 'M':
-                    print(f"{value} centimeter = {result} feet")
+                    print(f"{value} meter = {result} feet")
                 else:
-                    print(f"{value} meter = {result} centimeter")
+                    print(f"{value} feet = {result} meter")
         elif choice == 3:
             #consonant counter
             print("Consonant Counter")
