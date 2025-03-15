@@ -2,7 +2,7 @@
 def prime(num):
     #check if a num is prime
     #num less than 2 are not prime
-    if num > 2:
+    if num < 2:
         return False
     #check divisibility
     for i in range(2, int(num**0.5) + 1):
@@ -141,10 +141,7 @@ def main():
             print('Palindroma checker')
             text = input("Enter a text: ")
             result = palindra(text)
-            print(f"Is '{text}' a palindroma? {result}")
-        #elif choice == 6:
-            #word counter
-
+            print(f"Is '{text}' a palindroma? {result}") 
         elif choice == 6:
           file = input("Enter the URL of the text file : ").strip()
           try:
