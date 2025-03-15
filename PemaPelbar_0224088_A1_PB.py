@@ -46,9 +46,9 @@ while True:
                 #determine winner
                 if user_choice == computer_choice:
                     print('Its draw')
-                elif (user_choice == 'rock' and comp_choice == 'scissors'):
-                    (user_choice == 'paper' and comp_choice == 'rock')
-                    (user_choice == 'scissors' and comp_choice == 'rock')
+                elif (user_choice == 'rock' and computer_choice == 'scissors'):
+                    (user_choice == 'paper' and computer_choice == 'rock')
+                    (user_choice == 'scissors' and computer_choice == 'rock')
                     print('You won')
                 else:
                     print('Defeated')
